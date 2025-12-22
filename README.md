@@ -1,7 +1,4 @@
 # edema-analysis
-<<<<<<< HEAD
-Image analysis scripts for detecting and quantifying cardiac edema in zebrafish embryos.
-=======
 
 Python-based image analysis pipeline for detecting and quantifying **cardiac edema in zebrafish embryos** from microscopy images.
 
@@ -47,4 +44,5 @@ The goal is to extract **reproducible diameter and area measurements** from brig
 ## Author
 Yashita Kaku
 
->>>>>>> 048f180 (Add project README)
+
+
