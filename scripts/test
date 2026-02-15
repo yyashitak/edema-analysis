@@ -1,0 +1,15 @@
+import cv2
+from matplotlib import pyplot as plt
+import numpy as np
+import os
+from skimage.filters import roberts
+from skimage import io
+
+img = io.imread("data/image3.jpg", as_gray=True)
+edge = roberts(img)
+threshold = 0.28
+edge_norm = (edge - edge.min()) / (edge.max() - edge.min())
+masked = np.where (edge_norm > threshold, edge_norm, 0)
+
+plt.imshow(masked, cmap='gray')
+plt.show()
