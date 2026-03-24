@@ -3,12 +3,11 @@
 Python-based image analysis pipeline for detecting and quantifying **cardiac edema in zebrafish embryos** from microscopy images.
 
 ## Overview
-This repository contains image analysis scripts designed to identify and quantify cardiac edema in zebrafish embryos. The pipeline prioritizes **cardiac edema measurement**, using **eye object detection as an anatomical reference** when direct edema segmentation is challenging.
+This repository will contain image analysis scripts designed to identify and quantify cardiac edema. It prioritizes **cardiac edema measurement**, using **eye object detection as an anatomical reference** instead of direct edema segmentation.
 
-The goal is to extract **reproducible diameter and area measurements** from brightfield or fluorescence microscopy images.
+The goal is to extract **reproducible diameter and area measurements** from images.
 
 ## Input Data
-- Brightfield or fluorescence microscopy images of zebrafish embryos
 - Images may include severe cardiac and yolk sac edema  
 - Analysis focuses primarily on **cardiac edema regions**
 
@@ -17,7 +16,7 @@ The goal is to extract **reproducible diameter and area measurements** from brig
    Normalization, denoising, and thresholding
 
 2. **Eye detection**  
-   Eye object detection used as a stable anatomical landmark
+   Eye object detection is used as a  landmark
 
 3. **Cardiac region localization**  
    Spatial mapping from eye position to cardiac region
@@ -41,8 +40,7 @@ The goal is to extract **reproducible diameter and area measurements** from brig
 - scikit-image  
 - matplotlib  
 
-## Author
-Yashita Kaku
+
 
 
 

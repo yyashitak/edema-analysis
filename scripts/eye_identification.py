@@ -2,7 +2,13 @@ import cv2
 import numpy as np
 import os
 
+<<<<<<< HEAD
 #paths
+=======
+# ==============================
+# PATHS
+# ==============================
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
 image_folder = "/Users/yashitak/Desktop/stuff/edema/data/"
 roi_output_folder = "/Users/yashitak/Desktop/stuff/edema/data/edema_identification"
 
@@ -11,7 +17,13 @@ os.makedirs(roi_output_folder, exist_ok=True)
 images = [f for f in os.listdir(image_folder)
           if f.lower().endswith(('.png', '.jpg', '.jpeg', '.tif'))]
 
+<<<<<<< HEAD
 #processing loop
+=======
+# ==============================
+# PROCESS LOOP
+# ==============================
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
 for img_name in images:
     img_path = os.path.join(image_folder, img_name)
     img_gray = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
@@ -22,15 +34,26 @@ for img_name in images:
     img_color = cv2.cvtColor(img_gray, cv2.COLOR_GRAY2BGR)
     h_img, w_img = img_gray.shape
 
+<<<<<<< HEAD
     #pre-processing
     blurred = cv2.GaussianBlur(img_gray, (9, 9), 0)
 
     # eye thresholding
+=======
+    # --- 1. PRE-PROCESSING ---
+    blurred = cv2.GaussianBlur(img_gray, (9, 9), 0)
+
+    # --- 2. THRESHOLD FOR EYE ---
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
     _, eye_thresh = cv2.threshold(
         blurred, 30, 255, cv2.THRESH_BINARY_INV
     )
 
+<<<<<<< HEAD
     # eye contour
+=======
+    # --- 3. FIND EYE CONTOUR ---
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
     contours, _ = cv2.findContours(
         eye_thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
     )
@@ -53,12 +76,20 @@ for img_name in images:
 
                 cX = int(M["m10"] / M["m00"])
 
+<<<<<<< HEAD
                 # Right bias
+=======
+                # Right-side bias
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
                 if cX > max_x:
                     max_x = cX
                     best_eye = c
 
+<<<<<<< HEAD
     # roi definition
+=======
+    # --- 4. DEFINE + CROP ROI ---
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
     if best_eye is not None:
         x, y, w, h = cv2.boundingRect(best_eye)
 
@@ -68,13 +99,21 @@ for img_name in images:
         roi_w = int(w * 2)
         roi_h = int(h * 2)
 
+<<<<<<< HEAD
         # clip bounds
+=======
+        # --- CLIP TO IMAGE BOUNDS ---
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
         roi_x = max(0, roi_x)
         roi_y = max(0, roi_y)
         roi_w = min(roi_w, w_img - roi_x)
         roi_h = min(roi_h, h_img - roi_y)
 
+<<<<<<< HEAD
         # crop
+=======
+        # Crop ROI
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
         roi_crop = img_color[roi_y:roi_y + roi_h,
                               roi_x:roi_x + roi_w]
 
@@ -82,14 +121,22 @@ for img_name in images:
             print(f"Empty ROI for {img_name}, skipping.")
             continue
 
+<<<<<<< HEAD
         # save
+=======
+        # Save cropped ROI
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
         save_path = os.path.join(
             roi_output_folder, f"roi_{img_name}"
         )
         cv2.imwrite(save_path, roi_crop)
         print(f"Saved ROI → {save_path}")
 
+<<<<<<< HEAD
         # -draw
+=======
+        # --- OPTIONAL DEBUG DRAW ---
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
         cv2.rectangle(
             img_color,
             (roi_x, roi_y),
@@ -101,7 +148,11 @@ for img_name in images:
     else:
         print(f"Eye not found in {img_name}")
 
+<<<<<<< HEAD
     # -see
+=======
+    # --- DEBUG VIEW ---
+>>>>>>> e16fe415e8ef5f1b2d99720338800b9705ef0329
     cv2.imshow("Eye Mask", eye_thresh)
     cv2.imshow("ROI Location", img_color)
     cv2.waitKey(0)
